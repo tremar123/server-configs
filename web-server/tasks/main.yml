@@ -1,0 +1,28 @@
+- name: debian keyrings
+  ansible.builtin.apt:
+    name:
+      - debian-keyring
+      - debian-archive-keyring
+      - apt-transport-https
+    state: latest
+  become: yes
+
+- name: add caddy signing key
+  ansible.builtin.apt_key:
+    url: https://dl.cloudsmith.io/public/caddy/stable/gpg.key
+    state: present
+  become: yes
+
+- name: add caddy deb
+  ansible.builtin.apt_repository:
+    repo: deb [signed-by=/usr/share/keyrings/caddy-stable-archive-keyring.gpg] https://dl.cloudsmith.io/public/caddy/stable/deb/debian any-version main
+    state: present
+    update_cache: true
+    filename: caddy-stable.list
+  become: yes
+
+- name: install caddy
+  ansible.builtin.apt:
+    name: caddy
+    state: latest
+  become: yes

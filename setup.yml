@@ -3,7 +3,8 @@
 - hosts: main
   roles:
     # - update
-    - security
+    # - security
     # - role: artis3n.tailscale
     #   vars:
     #     tailscale_authkey: "{{ lookup('env', 'TAILSCALE_AUTH_KEY') }}"
+    - web-server

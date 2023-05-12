@@ -1,0 +1,35 @@
+- name: enable firewalld
+  ansible.builtin.systemd:
+    name: firewalld
+    state: started
+    enabled: true
+  become: yes
+
+- name: allow ssh
+  ansible.posix.firewalld:
+    service: ssh
+    permanent: true
+    state: enabled
+  become: yes
+
+- name: allow http
+  ansible.posix.firewalld:
+    service: http
+    permanent: true
+    state: enabled
+  become: yes
+
+- name: allow https
+  ansible.posix.firewalld:
+    service: https
+    permanent: true
+    state: enabled
+  become: yes
+
+- name: allow all on tailscale0
+  ansible.posix.firewalld:
+    interface: tailscale0
+    zone: trusted
+    state: enabled
+    permanent: true
+  become: yes

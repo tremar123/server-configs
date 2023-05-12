@@ -1,2 +1,10 @@
-- include_tasks: iptables.yml
+- name: install software
+  ansible.builtin.apt:
+    name:
+      - fail2ban
+      - firewalld
+    state: latest
+  become: yes
+
 - include_tasks: fail2ban.yml
+- include_tasks: firewalld.yml
