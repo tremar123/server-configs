@@ -7,4 +7,5 @@
     # - role: artis3n.tailscale
     #   vars:
     #     tailscale_authkey: "{{ lookup('env', 'TAILSCALE_AUTH_KEY') }}"
-    - web-server
+    # - web-server
+    - prometheus.prometheus.node_exporter
